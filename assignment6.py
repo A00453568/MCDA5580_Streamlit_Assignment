@@ -26,7 +26,7 @@ req = requests.get(API_URL,payload)
 if(req.status_code==200):
     raw_data = req.json()
 
-    df = pd.DataFrame(raw_data['prices'], columns=['date','price'])
+    df = pd.DataFrame(raw_data['prices'][:-1], columns=['date','price'])
     df['date'] = pd.to_datetime(df['date'], unit='ms')
     df.sort_values(by="date",inplace=True)
     df = df.set_index('date')
