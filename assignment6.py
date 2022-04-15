@@ -25,13 +25,13 @@ req = requests.get(API_URL,payload)
 if(req.status_code==200):
     raw_data = req.json()
 
-    df = pd.DataFrame(raw_data['prices'][:-1], columns=['date',currency])
-    df['date'] = pd.to_datetime(df['date'], unit='ms')
-    df.sort_values(by="date",inplace=True)
-    df = df.set_index('date')
-    st.line_chart(df)
+    bitcoin_df = pd.DataFrame(raw_data['prices'][:-1], columns=['date',currency])
+    bitcoin_df['date'] = pd.to_datetime(bitcoin_df['date'], unit='ms')
+    bitcoin_df.sort_values(by="date",inplace=True)
+    bitcoin_df = bitcoin_df.set_index('date')
+    st.line_chart(bitcoin_df)
     
-    average_price = df[currency].mean()
+    average_price = bitcoin_df[currency].mean()
     result = "Average price during this time was "+ str(average_price)+' '+currency
     st.write(result)
 
