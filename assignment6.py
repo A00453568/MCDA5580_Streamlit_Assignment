@@ -8,7 +8,6 @@ Created on Wed Apr 13 19:27:02 2022
 import pandas as pd
 import requests
 import streamlit as st
-import altair as alt
 
 st.title("Bitcoin Prices")
 
@@ -30,8 +29,7 @@ if(req.status_code==200):
     bitcoin_df['date'] = pd.to_datetime(bitcoin_df['date'], unit='ms')
     bitcoin_df.sort_values(by="date",inplace=True)
     bitcoin_df = bitcoin_df.set_index('date')
-    #st.line_chart(bitcoin_df)
-    st.altair_chart(bitcoin_df, use_container_width=True)
+    st.line_chart(bitcoin_df)
     
     average_price = bitcoin_df[currency].mean()
     result = "Average price during this time was "+ str(average_price)+' '+currency
