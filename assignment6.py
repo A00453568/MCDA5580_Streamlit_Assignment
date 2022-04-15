@@ -14,7 +14,6 @@ st.title("Bitcoin Prices")
 currency_list = ['cad','usd','inr']
 interval='daily'
 
-#API_URL=BASE_URL + '?vs_currency='+currency + '&days='+ str(day)+'&interval=' + interval
 API_URL='https://api.coingecko.com/api/v3/coins/bitcoin/market_chart'
 
 day = st.slider('No of Days', min_value=1, max_value=365)
