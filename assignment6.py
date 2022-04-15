@@ -26,13 +26,13 @@ req = requests.get(API_URL,payload)
 if(req.status_code==200):
     raw_data = req.json()
 
-    df = pd.DataFrame(raw_data['prices'][:-1], columns=['date','price'])
+    df = pd.DataFrame(raw_data['prices'][:-1], columns=['date',currency])
     df['date'] = pd.to_datetime(df['date'], unit='ms')
     df.sort_values(by="date",inplace=True)
     df = df.set_index('date')
     st.line_chart(df)
     
-    average_price = df['price'].mean()
+    average_price = df[currency].mean()
     result = "Average price during this time was "+ str(average_price)+' '+currency
     st.write(result)
 
