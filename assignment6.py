@@ -16,7 +16,7 @@ interval='daily'
 
 API_URL='https://api.coingecko.com/api/v3/coins/bitcoin/market_chart'
 
-day = st.slider('No of Days', min_value=1, max_value=365)
+day = st.slider('No of Days', min_value=1, max_value=365, value=90)
 currency = st.radio('Currency', currency_list)
 
 payload = {'vs_currency':currency,'days':str(day),'interval':interval}
